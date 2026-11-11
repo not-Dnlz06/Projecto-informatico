@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miller Contreras | Dev & Systems</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #0a0a0c;
+    color: #e1e1e6;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* MENÚ LATERAL (SIDEBAR) */
+.sidebar {
+    width: 280px;
+    background: #121216;
+    border-right: 1px solid #272730;
+    padding: 40px 30px;
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 100;
+}
+
+.brand-logo {
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+.brand-logo span {
+    color: #888894;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #888894;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: .2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-menu a:hover {
+    color: #ffffff;
+    padding-left: 5px;
+}
+
+.sidebar-footer {
+    font-size: 0.8rem;
+    color: #52525b;
+}
+
+/* CONTENIDO PRINCIPAL */
+.main-content {
+    margin-left: 280px;
+    flex: 1;
+    padding: 60px 80px;
+    max-width: 1200px;
+}
+
+/* HERO ASIMÉTRICO */
+.hero-block {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 50px;
+    align-items: center;
+    padding-bottom: 80px;
+    border-bottom: 1px solid #272730;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    color: #a1a1aa;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.badge-tech {
+    display: inline-block;
+    font-family: monospace;
+    background: #1c1c22;
+    border: 1px solid #3f3f46;
+    color: #d4d4d8;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+/* CUADRO PARA LA FOTO DE MILLER */
+.profile-box-container {
+    background: #121216;
+    border: 2px dashed #3f3f46;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: .3s;
+}
+
+.profile-box-container:hover {
+    border-color: #71717a;
+}
+
+.profile-img {
+    width: 100%;
+    max-height: 280px;
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-placeholder-text {
+    font-family: monospace;
+    color: #71717a;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+/* SECCIONES Y BLOQUES */
+.section-wrapper {
+    padding: 80px 0;
+    border-bottom: 1px solid #272730;
+}
+
+.section-label {
+    font-family: monospace;
+    color: #71717a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.section-heading {
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.about-text-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.about-card-desc {
+    background: #121216;
+    border: 1px solid #272730;
+    padding: 30px;
+    border-radius: 8px;
+    color: #a1a1aa;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* GRID DE HABILIDADES */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.skill-card {
+    background: #121216;
+    border: 1px solid #272730;
+    padding: 30px;
+    border-radius: 8px;
+    transition: .2s;
+}
+
+.skill-card:hover {
+    border-color: #52525b;
+    background: #16161c;
+}
+
+.skill-number {
+    font-family: monospace;
+    color: #52525b;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.skill-card h3 {
+    color: #f4f4f5;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.skill-card p {
+    color: #888894;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* CONTACTO COMPACTO */
+.contact-box {
+    background: #121216;
+    border: 1px solid #272730;
+    padding: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-btn {
+    padding: 12px 28px;
+    background: #ffffff;
+    color: #0a0a0c;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: .2s;
+}
+
+.contact-btn:hover {
+    background: #d4d4d8;
+}
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 20px;
+    }
+    .main-content {
+        margin-left: 0;
+        padding: 40px 20px;
+    }
+    .hero-block {
+        grid-template-columns: 1fr;
+    }
+    .about-text-grid {
+        grid-template-columns: 1fr;
+    }
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVEGACIÓN LATERAL -->
+<aside class="sidebar">
+    <div>
+        <div class="brand-logo">MILLER<span>.DEV</span></div>
+    </div>
+
+    <ul class="nav-menu">
+        <li><a href="#inicio">// 01. Inicio</a></li>
+        <li><a href="#sobre-mi">// 02. Perfil</a></li>
+        <li><a href="#enfoque">// 03. Enfoque</a></li>
+        <li><a href="#contacto">// 04. Contacto</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+        <p>© 2026 Miller Contreras</p>
+    </div>
+</aside>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="main-content">
+
+    <!-- HERO -->
+    <section id="inicio" class="hero-block">
+        <div class="hero-text">
+            <div class="badge-tech">SYS_DEV // PORTFOLIO</div>
+            <h1>Miller Contreras</h1>
+            <p>Desarrollador y entusiasta de la tecnología. Enfilado hacia la creación de soluciones digitales eficientes, optimización de sistemas, soporte técnico avanzado y arquitectura web limpia.</p>
+        </div>
+
+        <!-- CUADRO PARA LA FOTO -->
+        <div class="profile-box-container">
+            <!-- Sube la foto de Miller como miller-foto.jpg a su repositorio -->
+            <img src="miller-foto.jpg" alt="Miller Contreras" class="profile-img">
+            <div class="photo-placeholder-text">📁 miller-foto.jpg</div>
+        </div>
+    </section>
+
+    <!-- SOBRE MÍ (CON MÁS TEXTO) -->
+    <section id="sobre-mi" class="section-wrapper">
+        <div class="section-label">02. Perfil Profesional</div>
+        <h2 class="section-heading">Acerca de Mí</h2>
+        
+        <div class="about-text-grid">
+            <div class="about-card-desc">
+                <h3 style="color: #fff; margin-bottom: 12px; font-size: 1.1rem;">Trayectoria y Enfoque</h3>
+                <p>Me apasiona comprender el funcionamiento interno de las plataformas digitales y los sistemas computacionales. Disfruto enfrentarme a retos de lógica, depuración de errores y diseño de estructuras limpias que garanticen un rendimiento óptimo.</p>
+            </div>
+            <div class="about-card-desc">
+                <h3 style="color: #fff; margin-bottom: 12px; font-size: 1.1rem;">Metodología de Trabajo</h3>
+                <p>Priorizo la eficiencia y el orden técnico por encima de todo. Cada proyecto representa una oportunidad para aplicar buenas prácticas, evaluar herramientas modernas y estructurar soluciones escalables orientadas a resultados reales.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENFOQUE / HABILIDADES -->
+    <section id="enfoque" class="section-wrapper">
+        <div class="section-label">03. Áreas Técnicas</div>
+        <h2 class="section-heading">Especialidades & Competencias</h2>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-number">01.</div>
+                <h3>Desarrollo Web</h3>
+                <p>Creación y maquetación de interfaces responsivas, estructuradas bajo estándares modernos de HTML5 y CSS3 para una experiencia visual sólida.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-number">02.</div>
+                <h3>Lógica & Sistemas</h3>
+                <p>Análisis estructurado de requerimientos, planteamiento de algoritmos eficientes y resolución metódica de problemas complejos.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-number">03.</div>
+                <h3>Infraestructura & Redes</h3>
+                <p>Mantenimiento preventivo y correctivo de hardware, soporte técnico de equipos y optimización de conectividad local.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-number">04.</div>
+                <h3>Automatización</h3>
+                <p>Implementación de scripts, configuraciones avanzadas y flujos orientados a reducir tareas repetitivas y mejorar el rendimiento general.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section-wrapper" style="border-bottom: none;">
+        <div class="section-label">04. Comunicación</div>
+        <h2 class="section-heading">Contacto Directo</h2>
+
+        <div class="contact-box">
+            <div>
+                <h3 style="color:#fff; margin-bottom: 5px;">¿Tienes algún proyecto o colaboración en mente?</h3>
+                <p style="color:#888894; font-size: 0.95rem;">Abierto a nuevas oportunidades de desarrollo y trabajo técnico conjunto.</p>
+            </div>
+            <a href="mailto:contacto@millerdev.local" class="contact-btn">Enviar Mensaje</a>
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>
